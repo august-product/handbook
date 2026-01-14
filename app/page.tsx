@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import RequireAuth from "../components/RequireAuth";
 
 export default function HomePage() {
