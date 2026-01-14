@@ -1,15 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: var(--font-geist-sans);
+  color-scheme: light;
+  --font-sans: var(--font-jakarta-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-jakarta-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: #f7f7f7;
+  color: #0f172a;
+}
+
+.header-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.2rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.header-nav-link:hover::after,
+.header-nav-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
 }

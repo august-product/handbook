@@ -82,7 +82,7 @@ export default function AccountPage() {
               required
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
             />
           </div>
           <div>
@@ -94,7 +94,7 @@ export default function AccountPage() {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
             />
           </div>
           {error ? (
@@ -110,7 +110,7 @@ export default function AccountPage() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="w-full rounded-full bg-[#326354] px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#2a5044] disabled:cursor-not-allowed disabled:bg-slate-300"
           >
             {loading ? "Saving..." : "Save changes"}
           </button>

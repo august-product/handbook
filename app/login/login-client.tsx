@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { apiRequest } from "../../lib/api";
 import { getToken, setAuth } from "../../lib/auth";
 
@@ -64,7 +65,20 @@ export default function LoginClient() {
 
   return (
     <div className="mx-auto mt-12 max-w-md rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-      <h1 className="text-2xl font-semibold text-slate-900">Welcome back</h1>
+      <div className="flex flex-col items-center text-center">
+        <Image
+          src="/August_Logo_Black.png"
+          alt="August"
+          width={180}
+          height={60}
+          className="h-10 w-auto"
+          priority
+        />
+        <p className="mt-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+          August Handbook
+        </p>
+      </div>
+      <h1 className="mt-6 text-2xl font-semibold text-slate-900">Welcome back</h1>
       <p className="mt-2 text-sm text-slate-500">
         Sign in to access the August Handbook.
       </p>
@@ -78,7 +92,7 @@ export default function LoginClient() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+            className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
             placeholder="you@augustcollections.com"
           />
         </div>
@@ -91,7 +105,7 @@ export default function LoginClient() {
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+            className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
             placeholder="Minimum 6 characters"
           />
         </div>
@@ -103,7 +117,7 @@ export default function LoginClient() {
         <button
           type="submit"
           disabled={!canSubmit}
-          className="w-full rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+          className="w-full rounded-full bg-[#326354] px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#2a5044] disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           {loading ? "Signing in..." : "Sign in"}
         </button>

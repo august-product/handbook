@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { clearAuth, getUser, isLoggedIn } from "../lib/auth";
 import { usePathname, useRouter } from "next/navigation";
@@ -25,22 +26,32 @@ const TopNav = () => {
 
   return (
     <div className="flex items-center justify-between px-6 py-4">
-      <Link href="/" className="text-sm font-semibold tracking-wide text-slate-900">
-        August Handbook
+      <Link href="/" className="flex items-center gap-3">
+        <Image
+          src="/August_Logo_Black.png"
+          alt="August"
+          width={120}
+          height={40}
+          className="h-8 w-auto"
+          priority
+        />
+        <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+          Handbook
+        </span>
       </Link>
       {loggedIn ? (
         <div className="flex items-center gap-4 text-sm text-slate-600">
           <span className="hidden sm:block">{name || "Signed in"}</span>
           <Link
             href="/account"
-            className="rounded-full border border-slate-200 px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:text-slate-900"
+            className="header-nav-link text-sm font-medium text-slate-600 transition hover:text-slate-900"
           >
             Account settings
           </Link>
           <button
             type="button"
             onClick={handleLogout}
-            className="rounded-full bg-slate-900 px-3 py-1.5 text-white transition hover:bg-slate-800"
+            className="rounded-full bg-[#326354] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#2a5044]"
           >
             Logout
           </button>
@@ -48,7 +59,7 @@ const TopNav = () => {
       ) : (
         <Link
           href="/login"
-          className="rounded-full border border-slate-200 px-3 py-1.5 text-sm text-slate-700 transition hover:border-slate-300 hover:text-slate-900"
+          className="rounded-full bg-[#326354] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#2a5044]"
         >
           Login
         </Link>
