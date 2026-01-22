@@ -5,14 +5,15 @@ import fs from "fs/promises";
 import path from "path";
 import SignupClient from "./signup-client";
 
-const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
+const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".avif"]);
 
 async function getSignupImages(): Promise<string[]> {
   try {
     const imagesDir = path.join(process.cwd(), "public", "images");
     const entries = await fs.readdir(imagesDir);
-    const images = entries.filter((entry) =>
-      IMAGE_EXTENSIONS.has(path.extname(entry).toLowerCase()),
+    const images = entries.filter(
+      (entry) =>
+        entry !== "favicon.avif" && IMAGE_EXTENSIONS.has(path.extname(entry).toLowerCase()),
     );
     return images.map((image) => `/images/${image}`);
   } catch {

@@ -34,6 +34,8 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errorType, setErrorType] = useState<"auth" | "terms" | null>(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const nextPath = useMemo(() => searchParams.get("next") || "/", [searchParams]);
@@ -53,11 +55,27 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
     setSelectedImage(randomImage);
   }, [imageSources]);
 
+  useEffect(() => {
+    if (errorType !== "auth") {
+      return;
+    }
+    const timeoutId = window.setTimeout(() => {
+      window.location.href = "https://mondrianandme.com/";
+    }, 2000);
+    return () => window.clearTimeout(timeoutId);
+  }, [errorType]);
+
   const canSubmit = email.trim().length > 0 && password.trim().length >= 6 && !loading;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
+    setErrorType(null);
+    if (!agreedToTerms) {
+      setError("Please agree to the Terms & Conditions to continue.");
+      setErrorType("terms");
+      return;
+    }
     setLoading(true);
     try {
       const payload = await apiRequest<LoginResponse>(LOGIN_URL, {
@@ -72,6 +90,7 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
           ? String(err.message)
           : "Unable to log in. Please check your details and try again.";
       setError(message);
+      setErrorType("auth");
     } finally {
       setLoading(false);
     }
@@ -119,6 +138,26 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
                 placeholder="Minimum 6 characters"
               />
             </div>
+            <label className="flex items-start gap-3 text-sm text-slate-600">
+              <input
+                type="checkbox"
+                checked={agreedToTerms}
+                onChange={(event) => setAgreedToTerms(event.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-slate-300 text-[#326354] focus:ring-[#326354]"
+              />
+              <span>
+                I agree to the{" "}
+                <a
+                  href="/terms"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-slate-800"
+                >
+                  Terms &amp; Conditions
+                </a>
+                .
+              </span>
+            </label>
             {error ? (
               <div className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-600">
                 {error}
