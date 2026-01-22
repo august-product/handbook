@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Geist_Mono,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
 import TopNav from "../components/TopNav";
 import "./globals.css";
 
@@ -13,9 +17,18 @@ const jakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "August Handbook",
   description: "Onboarding tool for August Collections.",
+  icons: {
+    icon: "/images/favicon.avif",
+  },
 };
 
 export default function RootLayout({
@@ -26,11 +39,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jakartaSans.variable} ${geistMono.variable} bg-[#f7f7f7] text-[#0f172a] antialiased`}
+        className={`${jakartaSans.variable} ${geistMono.variable} ${cormorantGaramond.variable} bg-[#f4f0ec] text-[#1f2937] antialiased`}
       >
-        <div className="min-h-screen">
+        <div className="flex min-h-screen flex-col">
           <TopNav />
-          <main className="mx-auto max-w-3xl px-6 pb-16">{children}</main>
+          <main className="mx-auto w-full max-w-[420px] px-6 pb-16 sm:max-w-[1440px]">
+            {children}
+          </main>
+          <footer className="mt-auto px-6 pb-6">
+            <p className="text-center text-[10px] text-[#b3b3b3]">
+              Copyright 2026 August Collections
+            </p>
+          </footer>
         </div>
       </body>
     </html>

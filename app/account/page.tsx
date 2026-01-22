@@ -3,6 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import RequireAuth from "../../components/RequireAuth";
 import { apiRequest } from "../../lib/api";
 import { getUser, getUserId, setUser } from "../../lib/auth";
@@ -22,9 +23,12 @@ export default function AccountPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [userId, setUserId] = useState<string | number | null>(null);
+  const [toast, setToast] = useState<{ type: "error" | "success"; message: string } | null>(
+    null
+  );
 
   useEffect(() => {
     const user = getUser();
@@ -35,31 +39,50 @@ export default function AccountPage() {
     }
   }, []);
 
-  const canSubmit = name.trim().length > 0 && email.trim().length > 0 && !loading;
+  const passwordsMatch =
+    newPassword.trim().length === 0 ||
+    (newPassword.trim().length > 0 && newPassword === confirmPassword);
+  const canSubmit =
+    name.trim().length > 0 && email.trim().length > 0 && passwordsMatch && !loading;
+
+  const showToast = (type: "error" | "success", message: string) => {
+    setToast({ type, message });
+    window.setTimeout(() => setToast(null), 3000);
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError("");
-    setSuccess("");
+    setToast(null);
     if (!userId) {
-      setError("Missing user id. Please log in again to refresh your account.");
+      showToast("error", "Missing user id. Please log in again to refresh your account.");
+      return;
+    }
+    if (!passwordsMatch) {
+      showToast("error", "Passwords do not match.");
       return;
     }
     setLoading(true);
     try {
+      const body = {
+        name,
+        email,
+        ...(newPassword.trim() ? { password: newPassword } : {}),
+      };
       const payload = await apiRequest<UpdateResponse>(`${ACCOUNT_URL}/${userId}`, {
         method: "PUT",
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify(body),
       });
       const current = getUser();
       setUser({ ...(current || {}), ...payload });
-      setSuccess("Account updated.");
+      setNewPassword("");
+      setConfirmPassword("");
+      showToast("success", "Account updated.");
     } catch (err) {
       const message =
         err && typeof err === "object" && "message" in err
           ? String(err.message)
           : "Unable to update account. Please try again.";
-      setError(message);
+      showToast("error", message);
     } finally {
       setLoading(false);
     }
@@ -67,8 +90,20 @@ export default function AccountPage() {
 
   return (
     <RequireAuth>
-      <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-2xl font-semibold text-slate-900">Account settings</h1>
+      <div className="relative mt-10 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        {toast ? (
+          <div
+            className={`absolute right-6 top-6 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${
+              toast.type === "success"
+                ? "bg-emerald-100 text-emerald-700"
+                : "bg-rose-100 text-rose-700"
+            }`}
+            role="status"
+          >
+            {toast.message}
+          </div>
+        ) : null}
+        <h1 className="text-2xl font-semibold text-slate-800">Account settings</h1>
         <p className="mt-2 text-sm text-slate-500">
           Update your profile details for August Collections.
         </p>
@@ -82,7 +117,7 @@ export default function AccountPage() {
               required
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-[#326354]"
             />
           </div>
           <div>
@@ -94,19 +129,35 @@ export default function AccountPage() {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#326354]"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-[#326354]"
             />
           </div>
-          {error ? (
-            <div className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-600">
-              {error}
-            </div>
-          ) : null}
-          {success ? (
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
-              {success}
-            </div>
-          ) : null}
+          <div>
+            <label className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              New password
+            </label>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(event) => setNewPassword(event.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-[#326354]"
+            />
+            <label className="mt-4 inline-block text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Confirm new password
+            </label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-[#326354]"
+            />
+            <Link
+              href="/login"
+              className="mt-2 inline-flex text-xs font-semibold text-[#326354] hover:text-[#2a5044]"
+            >
+              Forgot Password?
+            </Link>
+          </div>
           <button
             type="submit"
             disabled={!canSubmit}

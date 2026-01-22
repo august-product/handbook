@@ -1,20 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
   color-scheme: light;
   --font-sans: var(--font-jakarta-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-cormorant-garamond);
 }
 
 @theme inline {
   --font-sans: var(--font-jakarta-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-cormorant-garamond);
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #f7f7f7;
-  color: #0f172a;
+  background-color: #f4f0ec;
+  color: #1f2937;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@keyframes curate-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.curate-animate {
+  animation: curate-fade-up 700ms ease-out both;
 }
 
 .header-nav-link {
@@ -41,4 +70,11 @@ body {
 .header-nav-link:focus-visible::after {
   opacity: 1;
   transform: scaleX(1);
+}
+
+.image-protect {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }

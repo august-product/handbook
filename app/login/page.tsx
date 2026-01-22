@@ -1,9 +1,27 @@
 export const dynamic = "force-dynamic";
 
 import { Suspense } from "react";
+import fs from "fs/promises";
+import path from "path";
 import LoginClient from "./login-client";
 
-export default function LoginPage() {
+const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
+
+async function getLoginImages(): Promise<string[]> {
+  try {
+    const imagesDir = path.join(process.cwd(), "public", "images");
+    const entries = await fs.readdir(imagesDir);
+    const images = entries.filter((entry) =>
+      IMAGE_EXTENSIONS.has(path.extname(entry).toLowerCase()),
+    );
+    return images.map((image) => `/images/${image}`);
+  } catch {
+    return [];
+  }
+}
+
+export default async function LoginPage() {
+  const imageSources = await getLoginImages();
   return (
     <Suspense
       fallback={
@@ -12,7 +30,7 @@ export default function LoginPage() {
         </div>
       }
     >
-      <LoginClient />
+      <LoginClient imageSources={imageSources} />
     </Suspense>
   );
 }
