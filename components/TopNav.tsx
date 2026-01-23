@@ -148,7 +148,7 @@ const TopNav = () => {
             href="/account"
             className="header-nav-link text-sm font-medium text-slate-600 transition hover:text-slate-800"
           >
-            {name ?? "Account settings"}
+            {name ? `Welcome, ${name}` : "Account settings"}
           </Link>
           <button
             type="button"

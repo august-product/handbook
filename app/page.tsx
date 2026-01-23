@@ -22,9 +22,6 @@ export default function HomePage() {
           />
           <div className="absolute bottom-[25%] left-0 right-0 px-6 sm:px-10">
             <div className="max-w-lg space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/90">
-                Welcome
-              </p>
             </div>
           </div>
         </div>
