@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { apiRequest } from "../lib/api";
 import { clearAuth, getUser, isLoggedIn, setUser } from "../lib/auth";
+import type { AuthUser } from "../lib/auth";
 import { usePathname, useRouter } from "next/navigation";
 
 const TopNav = () => {
@@ -27,9 +28,9 @@ const TopNav = () => {
           const payload = await apiRequest<AuthMePayload>(AUTH_ME_URL);
           const resolved = resolveAuthMeUser(payload);
           if (!resolved) return;
-          const nextUser = {
-            ...resolved,
-            name: resolved.name || resolved.username || resolved.email || undefined,
+          const nextUser: AuthUser = {
+            ...(resolved as AuthUser),
+            name: resolveUserDisplayName(resolved),
           };
           setUser(nextUser);
           setName(resolveUserDisplayName(nextUser));
