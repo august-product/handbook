@@ -1,6 +1,7 @@
 export type AuthUser = {
   id?: string | number;
   handbook_user_id?: string | number;
+  username?: string;
   name?: string;
   email?: string;
   [key: string]: unknown;

@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { apiRequest } from "../../lib/api";
-import { getToken, setAuth } from "../../lib/auth";
+import { getToken, setAuth, setUser } from "../../lib/auth";
 
 type LoginResponse = {
   token?: string;
@@ -26,6 +26,8 @@ type LoginClientProps = {
 
 const LOGIN_URL =
   "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/login";
+const AUTH_ME_URL =
+  "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/me";
 
 export default function LoginClient({ imageSources }: LoginClientProps) {
   const router = useRouter();
@@ -83,6 +85,24 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
         body: JSON.stringify({ email, password }),
       });
       setAuth(payload);
+      try {
+        const profilePayload = await apiRequest<LoginResponse | { user?: LoginResponse["user"] }>(
+          AUTH_ME_URL
+        );
+        const resolvedUser = resolveAuthMeUser(profilePayload);
+        if (resolvedUser) {
+          setUser({
+            ...resolvedUser,
+            name:
+              resolvedUser.name ||
+              (resolvedUser as { username?: string }).username ||
+              resolvedUser.email ||
+              undefined,
+          });
+        }
+      } catch {
+        // Ignore auth/me errors; allow login to proceed.
+      }
       router.replace(nextPath);
     } catch (err) {
       const message =
@@ -201,3 +221,13 @@ export default function LoginClient({ imageSources }: LoginClientProps) {
     </div>
   );
 }
+
+const resolveAuthMeUser = (
+  payload: LoginResponse | { user?: LoginResponse["user"] }
+): LoginResponse["user"] | null => {
+  if (!payload || typeof payload !== "object") return null;
+  if ("user" in payload && payload.user && typeof payload.user === "object") {
+    return payload.user as LoginResponse["user"];
+  }
+  return payload as LoginResponse["user"];
+};

@@ -26,6 +26,8 @@ type SignupClientProps = {
 
 const SIGNUP_URL =
   "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/signup";
+const AUTH_ME_URL =
+  "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/me";
 
 export default function SignupClient({ imageSources }: SignupClientProps) {
   const router = useRouter();
@@ -60,7 +62,7 @@ export default function SignupClient({ imageSources }: SignupClientProps) {
     }
     return (
       normalizedEmail.endsWith("@augustcollections.com") ||
-      normalizedEmail.endsWith("@studioriolondon.com")
+      normalizedEmail.endsWith("@riolondon.com")
     );
   }, [normalizedEmail]);
   const passwordsMatch =
@@ -99,6 +101,24 @@ export default function SignupClient({ imageSources }: SignupClientProps) {
         body: JSON.stringify({ name, email, password }),
       });
       setAuth(payload);
+      try {
+        const profilePayload = await apiRequest<SignupResponse | { user?: SignupResponse["user"] }>(
+          AUTH_ME_URL
+        );
+        const resolvedUser = resolveAuthMeUser(profilePayload);
+        if (resolvedUser) {
+          setUser({
+            ...resolvedUser,
+            name:
+              resolvedUser.name ||
+              (resolvedUser as { username?: string }).username ||
+              resolvedUser.email ||
+              undefined,
+          });
+        }
+      } catch {
+        // Ignore auth/me errors; allow signup to proceed.
+      }
       const current = getUser();
       setUser({ ...(current || {}), name, email });
       router.replace("/");
@@ -175,7 +195,7 @@ export default function SignupClient({ imageSources }: SignupClientProps) {
             </div>
             <div>
               <label className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Password
+                Confirm Password
               </label>
               <input
                 type="password"
@@ -253,3 +273,13 @@ export default function SignupClient({ imageSources }: SignupClientProps) {
     </div>
   );
 }
+
+const resolveAuthMeUser = (
+  payload: SignupResponse | { user?: SignupResponse["user"] }
+): SignupResponse["user"] | null => {
+  if (!payload || typeof payload !== "object") return null;
+  if ("user" in payload && payload.user && typeof payload.user === "object") {
+    return payload.user as SignupResponse["user"];
+  }
+  return payload as SignupResponse["user"];
+};

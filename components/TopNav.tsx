@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { clearAuth, getUser, isLoggedIn } from "../lib/auth";
+import { apiRequest } from "../lib/api";
+import { clearAuth, getUser, isLoggedIn, setUser } from "../lib/auth";
 import { usePathname, useRouter } from "next/navigation";
 
 const TopNav = () => {
@@ -15,9 +16,29 @@ const TopNav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    setLoggedIn(isLoggedIn());
+    const logged = isLoggedIn();
+    setLoggedIn(logged);
     const user = getUser();
-    setName(typeof user?.name === "string" ? user.name : undefined);
+    const resolvedName = resolveUserDisplayName(user);
+    setName(resolvedName);
+    if (logged && !resolvedName) {
+      const loadProfile = async () => {
+        try {
+          const payload = await apiRequest<AuthMePayload>(AUTH_ME_URL);
+          const resolved = resolveAuthMeUser(payload);
+          if (!resolved) return;
+          const nextUser = {
+            ...resolved,
+            name: resolved.name || resolved.username || resolved.email || undefined,
+          };
+          setUser(nextUser);
+          setName(resolveUserDisplayName(nextUser));
+        } catch {
+          // Ignore auth/me failures; nav can remain generic.
+        }
+      };
+      loadProfile();
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -123,7 +144,6 @@ const TopNav = () => {
       )}
       {loggedIn ? (
         <div className="flex items-center gap-4 text-sm text-slate-600">
-          {name ? <span className="hidden sm:block">{name}</span> : null}
           <Link
             href="/account"
             className="header-nav-link text-sm font-medium text-slate-600 transition hover:text-slate-800"
@@ -217,6 +237,36 @@ const TopNav = () => {
       ) : null}
     </div>
   );
+};
+
+type AuthMePayload = {
+  user?: Record<string, unknown>;
+  data?: Record<string, unknown>;
+  [key: string]: unknown;
+};
+
+const AUTH_ME_URL =
+  "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/me";
+
+const resolveAuthMeUser = (payload: AuthMePayload): Record<string, unknown> | null => {
+  if (!payload || typeof payload !== "object") return null;
+  if ("user" in payload && payload.user && typeof payload.user === "object") {
+    return payload.user;
+  }
+  if ("data" in payload && payload.data && typeof payload.data === "object") {
+    return payload.data;
+  }
+  return payload;
+};
+
+const resolveUserDisplayName = (user?: Record<string, unknown> | null) => {
+  const name = typeof user?.name === "string" ? user.name.trim() : "";
+  if (name) return name;
+  const username = typeof user?.username === "string" ? user.username.trim() : "";
+  if (username) return username;
+  const email = typeof user?.email === "string" ? user.email.trim() : "";
+  if (email) return email;
+  return undefined;
 };
 
 export default TopNav;

@@ -25,11 +25,6 @@ export default function HomePage() {
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/90">
                 Welcome
               </p>
-              <input
-                type="search"
-                placeholder="Search the handbook"
-                className="w-full rounded-full border border-white/60 bg-white/90 px-5 py-3 text-sm text-slate-700 shadow-lg placeholder:text-slate-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/70"
-              />
             </div>
           </div>
         </div>

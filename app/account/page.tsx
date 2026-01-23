@@ -11,6 +11,7 @@ import { getUser, getUserId, setUser } from "../../lib/auth";
 type UpdateResponse = {
   id?: string | number;
   handbook_user_id?: string | number;
+  username?: string;
   name?: string;
   email?: string;
   [key: string]: unknown;
@@ -18,6 +19,8 @@ type UpdateResponse = {
 
 const ACCOUNT_URL =
   "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/handbook_user";
+const AUTH_ME_URL =
+  "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB:v3.2/auth/me";
 
 export default function AccountPage() {
   const [name, setName] = useState("");
@@ -33,10 +36,36 @@ export default function AccountPage() {
   useEffect(() => {
     const user = getUser();
     if (user) {
-      setName(user.name || "");
+      setName(user.name || user.username || "");
       setEmail(user.email || "");
       setUserId(getUserId(user));
     }
+    const loadProfile = async () => {
+      try {
+        const payload = await apiRequest<UpdateResponse | { user?: UpdateResponse; data?: UpdateResponse }>(
+          AUTH_ME_URL
+        );
+        const resolved = resolveAuthMeUser(payload);
+        if (!resolved) return;
+        const resolvedName =
+          (typeof resolved.name === "string" && resolved.name.trim()) ||
+          (typeof resolved.username === "string" && resolved.username.trim())
+            ? (resolved.name || resolved.username || "")
+            : "";
+        const resolvedEmail = typeof resolved.email === "string" ? resolved.email : "";
+        const nextUser = {
+          ...resolved,
+          name: resolved.name || resolved.username || resolvedEmail
+        };
+        setUser(nextUser);
+        setName(resolvedName);
+        setEmail(resolvedEmail);
+        setUserId(getUserId(nextUser));
+      } catch {
+        // Ignore auth/me failures and keep any stored user details.
+      }
+    };
+    loadProfile();
   }, []);
 
   const passwordsMatch =
@@ -64,7 +93,7 @@ export default function AccountPage() {
     setLoading(true);
     try {
       const body = {
-        name,
+        username: name,
         email,
         ...(newPassword.trim() ? { password: newPassword } : {}),
       };
@@ -73,7 +102,11 @@ export default function AccountPage() {
         body: JSON.stringify(body),
       });
       const current = getUser();
-      setUser({ ...(current || {}), ...payload });
+      const merged = { ...(current || {}), ...payload };
+      if (!merged.name && merged.username) {
+        merged.name = merged.username;
+      }
+      setUser(merged);
       setNewPassword("");
       setConfirmPassword("");
       showToast("success", "Account updated.");
@@ -170,3 +203,16 @@ export default function AccountPage() {
     </RequireAuth>
   );
 }
+
+const resolveAuthMeUser = (
+  payload: UpdateResponse | { user?: UpdateResponse; data?: UpdateResponse }
+): UpdateResponse | null => {
+  if (!payload || typeof payload !== "object") return null;
+  if ("user" in payload && payload.user && typeof payload.user === "object") {
+    return payload.user as UpdateResponse;
+  }
+  if ("data" in payload && payload.data && typeof payload.data === "object") {
+    return payload.data as UpdateResponse;
+  }
+  return payload as UpdateResponse;
+};
