@@ -63,6 +63,12 @@ export const navSections: NavSection[] = [
         icon: "layers",
       },
       {
+        href: "/wiki/employment-hero",
+        label: "Employment Hero",
+        description: "Our central HR platform — holidays, training, and reviews.",
+        icon: "briefcase",
+      },
+      {
         href: "/wiki/financials",
         label: "Financials",
         description: "Revenue, capital, and financial structure.",

@@ -10,6 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { navSections, isSectionActive } from "../lib/navigation";
 import MegaMenuPanel from "./nav/MegaMenu";
 import MobileNav from "./nav/MobileNav";
+import SearchBar from "./nav/SearchBar";
 
 const TopNav = () => {
   const router = useRouter();
@@ -190,8 +191,9 @@ const TopNav = () => {
           <div className="flex items-center gap-5">
             {loggedIn && !hideNavBranding && (
               <>
-                {/* Desktop: user email */}
+                {/* Desktop: search + user email */}
                 <div className="hidden items-center gap-5 md:flex">
+                  <SearchBar variant="desktop" />
                   <Link
                     href="/account"
                     className="text-[13px] font-normal text-white/70 transition hover:text-white"

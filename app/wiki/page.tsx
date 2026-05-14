@@ -4,6 +4,7 @@ import Link from "next/link";
 const topics = [
   { href: "/wiki/branding-and-identity", title: "Branding & Identity", body: "Logo usage, tone of voice, visual identity and brand guidelines." },
   { href: "/wiki/collections", title: "Collections", body: "Everything about our Collections — locations, homes, and what makes each one unique." },
+  { href: "/wiki/employment-hero", title: "Employment Hero", body: "Our central HR platform — employment details, holidays, training, and reviews." },
   { href: "/wiki/financials", title: "Financials", body: "Revenue models, pricing structures, and financial reporting." },
   { href: "/wiki/health-and-safety", title: "Health & Safety", body: "Health and safety policy and guidance." },
   { href: "/wiki/homeowners", title: "Homeowners", body: "Owner profiles, communication standards, and homeowner experience." },
