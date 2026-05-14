@@ -5,6 +5,7 @@ const topics = [
   { href: "/wiki/branding-and-identity", title: "Branding & Identity", body: "Logo usage, tone of voice, visual identity and brand guidelines." },
   { href: "/wiki/collections", title: "Collections", body: "Everything about our Collections — locations, homes, and what makes each one unique." },
   { href: "/wiki/financials", title: "Financials", body: "Revenue models, pricing structures, and financial reporting." },
+  { href: "/wiki/health-and-safety", title: "Health & Safety", body: "Health and safety policy and guidance." },
   { href: "/wiki/homeowners", title: "Homeowners", body: "Owner profiles, communication standards, and homeowner experience." },
   { href: "/wiki/how-to", title: "How To", body: "Step-by-step guides for common tasks, tools, and internal workflows." },
   { href: "/wiki/how-we-work", title: "How We Work", body: "Our ways of working, meeting cadences, and team rituals." },

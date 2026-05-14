@@ -13,7 +13,7 @@ const itLinks = [
   { label: "Device Setup", href: "/it-support/device-setup" },
   { label: "Applications", href: "/it-support/applications" },
   { label: "Security", href: "/it-support/security" },
-  { label: "AI Policy", href: "/it-support/ai-policy" },
+  { label: "AI Policy", href: "/it-support/ai" },
   { label: "Support", href: "/it-support/support" },
 ];
 
