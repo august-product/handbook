@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const items = [
-  { href: "/it-support/ai-policy", title: "AI Policy", body: "Guidelines for using AI tools responsibly and securely at August." },
+  { href: "/it-support/ai", title: "AI Policy", body: "Guidelines for using AI tools responsibly and securely at August." },
   { href: "/it-support/accounts-sso-passwords", title: "Accounts, SSO & Passwords", body: "Single sign-on setup, password management, and account access." },
   { href: "/it-support/applications", title: "Applications", body: "Software tools, licences, and approved applications for work." },
   { href: "/it-support/device-setup", title: "Device Setup", body: "Laptop configuration, mobile devices, and initial setup guides." },

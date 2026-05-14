@@ -5,7 +5,7 @@ const tocItems = [
   { label: "Scope", anchor: "#scope" },
   { label: "Account Management", anchor: "#account-management" },
   { label: "Password Policy", anchor: "#password-policy" },
-  { label: "Multi-Factor Authentication (MFA)", anchor: "#mfa" },
+  { label: "2FA + Multi-Factor Authentication (MFA)", anchor: "#mfa" },
   { label: "1Password — Password Manager", anchor: "#1password" },
   { label: "Single Sign-On (SSO)", anchor: "#sso" },
   { label: "Incident Response", anchor: "#incident-response" },

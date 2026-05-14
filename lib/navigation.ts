@@ -69,6 +69,12 @@ export const navSections: NavSection[] = [
         icon: "trending-up",
       },
       {
+        href: "/wiki/health-and-safety",
+        label: "Health & Safety",
+        description: "Health and safety policy and guidance.",
+        icon: "shield",
+      },
+      {
         href: "/wiki/homeowners",
         label: "Homeowners",
         description: "Homeowner journey, access, and guest experience.",
@@ -137,14 +143,14 @@ export const navSections: NavSection[] = [
     description: "Tools, access, devices, and troubleshooting guides.",
     items: [
       {
-        href: "/it-support/ai-policy",
-        label: "AI Policy",
+        href: "/it-support/ai",
+        label: "August, AI and Claude",
         description: "Guidelines for using AI tools responsibly.",
         icon: "bot",
       },
       {
         href: "/it-support/accounts-sso-passwords",
-        label: "Accounts, SSO & Passwords",
+        label: "Accounts, 2FA, SSO & Passwords",
         description: "Single sign-on setup and password management.",
         icon: "key-round",
       },

@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 const tocItems = [
-  { label: "About This Policy", anchor: "#about" },
+  { label: "August, AI and Claude", anchor: "#august-ai-claude" },
+  { label: "The AI Policy", anchor: "#about" },
   { label: "Purpose & Scope", anchor: "#purpose-scope" },
   { label: "Permitted Uses", anchor: "#permitted-uses" },
   { label: "Prohibited Uses", anchor: "#prohibited-uses" },
@@ -43,13 +44,13 @@ export default function AIPolicyPage() {
           &nbsp;/&nbsp;
           <Link href="/it-support" className="text-slate-400 transition hover:text-slate-600">IT &amp; SUPPORT</Link>
           &nbsp;/&nbsp;
-          AI POLICY
+          AI
         </p>
         <h1
           className="text-center text-[36px] font-normal text-slate-800 sm:text-[56px]"
           style={{ fontFamily: "Cormorant Garamond, serif" }}
         >
-          AI Policy
+          AI
         </h1>
         <p className="text-center text-[13px] leading-[1.7] text-slate-400 sm:text-[15px]">
           Guidelines for using AI tools
@@ -80,6 +81,330 @@ export default function AIPolicyPage() {
           </ul>
         </nav>
 
+        {/* August, AI and Claude */}
+        <section id="august-ai-claude" className="scroll-mt-24 space-y-8">
+          <div className="space-y-3">
+            <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400 sm:text-[11px]">
+              WORKING WITH AI
+            </p>
+            <h2
+              className="text-[24px] font-semibold text-slate-800 sm:text-[28px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              August, AI and Claude
+            </h2>
+          </div>
+
+          {/* Claude in Our Work */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Claude in Our Work
+            </h3>
+            <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
+              We&apos;re building August and Studio RIO London with AI at the centre. That means every part
+              of the team&mdash;from Sales and Marketing to Operations and Home Experience&mdash;has
+              access to Claude, our preferred AI partner. It&apos;s helping us work faster, think
+              more clearly, and focus on what matters most: the homes, the homeowners, and the
+              experience around both.
+            </p>
+          </div>
+
+          {/* What Claude does for us */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              What Claude does for us
+            </h3>
+            <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
+              Claude helps us write better proposals, prepare insights from our data, refine
+              designs, and handle the kind of repetitive thinking that distracts from creative
+              work. It&apos;s not replacing the team&mdash;it&apos;s freeing us to do our best
+              work. A marketer can spend less time on emails and more time on strategy. A designer
+              can sketch ideas faster. A homeowner can get a thoughtful response without delay.
+            </p>
+          </div>
+
+          {/* How to use Claude */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              How to use Claude
+            </h3>
+            <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
+              You have access to Claude Team, a shared account that keeps your work secure while
+              letting the team share knowledge quickly. Think of it as a collaborative tool, not a
+              tool that works for any individual in isolation.
+            </p>
+            <p className="text-[14px] font-semibold leading-[1.8] text-slate-700 sm:text-[15px]">
+              Some principles:
+            </p>
+            <ul className="list-inside list-disc space-y-2 text-[14px] leading-[1.7] text-slate-500">
+              <li>
+                <strong className="text-slate-700">It&apos;s a thinking partner, not the answer.</strong>{" "}
+                Use Claude to explore ideas, draft first versions, or brainstorm. Always review and
+                improve what it gives you. Never ship something Claude wrote without your judgment.
+              </li>
+              <li>
+                <strong className="text-slate-700">Keep August voice in mind.</strong> Claude can
+                write in our tone if you guide it&mdash;share the TOV guidelines or give it
+                examples. But you&apos;re the final voice, always.
+              </li>
+              <li>
+                <strong className="text-slate-700">Data stays private.</strong> Don&apos;t paste
+                anything confidential, personal, or sensitive that shouldn&apos;t be shared. We
+                handle live data carefully.
+              </li>
+              <li>
+                <strong className="text-slate-700">Experiment.</strong> The best way to understand
+                what Claude can do is to use it. Ask questions. Try things that feel a bit
+                ambitious. That&apos;s how we learn.
+              </li>
+            </ul>
+          </div>
+
+          {/* Starting with Claude */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Starting with Claude
+            </h3>
+            <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
+              Here are some of the most common challenges you might hit as you get going&mdash;and
+              how to address them.
+            </p>
+
+            <div className="overflow-x-auto rounded-2xl bg-[#eae6e1]">
+              <table className="w-full text-left text-[14px]">
+                <thead>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <th className="px-6 py-4 font-semibold text-slate-800">Challenge</th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">What&apos;s happening</th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Try this</th>
+                  </tr>
+                </thead>
+                <tbody className="text-slate-500 align-top">
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">
+                      Claude&apos;s response is too generic
+                    </td>
+                    <td className="px-6 py-4">
+                      Your prompt didn&apos;t include enough context about your specific situation
+                    </td>
+                    <td className="px-6 py-4">
+                      Add details about your audience, role, or constraints.
+                      <br />
+                      <br />
+                      Instead of &ldquo;Write an email about the project delay,&rdquo; try
+                      &ldquo;Write an email to our enterprise client explaining that the software
+                      integration will be delayed by two weeks. They&apos;ve been patient so far
+                      but this is the second delay. Keep it professional but apologetic.&rdquo;
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">
+                      The response is too long (or too short)
+                    </td>
+                    <td className="px-6 py-4">Claude is guessing at appropriate length</td>
+                    <td className="px-6 py-4">
+                      Be explicit: &ldquo;Give me a two-paragraph summary&rdquo; or &ldquo;Keep
+                      this under 100 words&rdquo; or &ldquo;I need a comprehensive
+                      analysis&mdash;length isn&apos;t a concern.&rdquo;
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">
+                      Claude didn&apos;t follow my format
+                    </td>
+                    <td className="px-6 py-4">
+                      Claude understood what you want but not how you want it presented
+                    </td>
+                    <td className="px-6 py-4">
+                      Show, don&apos;t just tell.
+                      <br />
+                      <br />
+                      Provide an example of the format, or describe the structure explicitly:
+                      &ldquo;Use bullet points with bold headers for each section.&rdquo;
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">
+                      I got confident-sounding information that turned out to be wrong
+                    </td>
+                    <td className="px-6 py-4">
+                      Claude occasionally generates plausible but incorrect information,
+                      especially with specific facts or niche topics
+                    </td>
+                    <td className="px-6 py-4">
+                      For high-stakes work, verify key facts independently.
+                      <br />
+                      <br />
+                      Ask Claude to cite sources or indicate confidence level. Enable web search
+                      to ground responses in current information.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-semibold text-slate-700">The tone isn&apos;t right</td>
+                    <td className="px-6 py-4">
+                      Claude defaults to helpful and professional, which may not match your needs
+                    </td>
+                    <td className="px-6 py-4">
+                      Describe the tone in plain language: &ldquo;Make this more
+                      conversational&rdquo; or &ldquo;This should sound authoritative and
+                      formal.&rdquo;
+                      <br />
+                      <br />
+                      Provide an example of writing in the style you want.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="rounded-2xl bg-[#eae6e1] px-7 py-6">
+              <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
+                Still stuck, or want to share something that worked? Drop into{" "}
+                <a
+                  href="https://august-collection.slack.com/archives/C0AS41E78F2"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-[#326354] transition hover:text-[#2a5044]"
+                >
+                  #genius-bar
+                </a>{" "}
+                in Slack &mdash; our internal channel for AI tips, prompts, and questions.
+              </p>
+            </div>
+          </div>
+
+          {/* Comparing the three modes */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Comparing the three modes &mdash; Chat, Cowork, Code
+            </h3>
+            <div className="overflow-x-auto rounded-2xl bg-[#eae6e1]">
+              <table className="w-full text-left text-[14px]">
+                <thead>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <th className="px-6 py-4 font-semibold text-slate-800"></th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Chat</th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Cowork</th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Code</th>
+                  </tr>
+                </thead>
+                <tbody className="text-slate-500 align-top">
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">Optimised for</td>
+                    <td className="px-6 py-4">
+                      Quicker exchanges: exploring ideas, iterative drafting, quick answers,
+                      learning through dialogue
+                    </td>
+                    <td className="px-6 py-4">
+                      Complex or sustained work: research, analysis, file organization, producing
+                      finished documents and deliverables
+                    </td>
+                    <td className="px-6 py-4">
+                      Building software: writing, testing, running and deploying code
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">Key features</td>
+                    <td className="px-6 py-4">Quick entry, dictation</td>
+                    <td className="px-6 py-4">
+                      Work from local folders, plugins, subagents, scheduled tasks
+                    </td>
+                    <td className="px-6 py-4">
+                      Ask/Code/Plan modes, visual diffs, git integration, local and remote
+                      environments
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-semibold text-slate-700">Tools and extensions</td>
+                    <td className="px-6 py-4">Connectors, Skills, Claude in Chrome</td>
+                    <td className="px-6 py-4">
+                      Connectors (local and remote), Skills, Claude in Chrome, Plugins, Computer
+                      Use
+                    </td>
+                    <td className="px-6 py-4">
+                      Connectors, Skills, Claude in Chrome, Plugins, Hooks
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Projects and Skills */}
+          <div className="space-y-5">
+            <h3
+              className="text-[18px] font-semibold text-slate-800 sm:text-[20px]"
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+            >
+              Projects and Skills
+            </h3>
+            <div className="overflow-x-auto rounded-2xl bg-[#eae6e1]">
+              <table className="w-full text-left text-[14px]">
+                <thead>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <th className="px-6 py-4 font-semibold text-slate-800"></th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Projects</th>
+                    <th className="px-6 py-4 font-semibold text-slate-800">Skills</th>
+                  </tr>
+                </thead>
+                <tbody className="text-slate-500 align-top">
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">Purpose</td>
+                    <td className="px-6 py-4">Store knowledge Claude references</td>
+                    <td className="px-6 py-4">Define processes Claude executes</td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">Best for</td>
+                    <td className="px-6 py-4">
+                      Long-term context, reference materials, team collaboration
+                    </td>
+                    <td className="px-6 py-4">
+                      Repeatable workflows, multi-step tasks, consistent methodology
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#d9d4ce]">
+                    <td className="px-6 py-4 font-semibold text-slate-700">Example</td>
+                    <td className="px-6 py-4">
+                      Customer hub, research buddy, feedback generator
+                    </td>
+                    <td className="px-6 py-4">
+                      Process guidelines (like brand or legal), Blog drafting, PDF creation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-semibold text-slate-700">Persistence</td>
+                    <td className="px-6 py-4">
+                      Knowledge available across all chats in the project
+                    </td>
+                    <td className="px-6 py-4">
+                      Instructions applied when the skill is invoked
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <BackToTop />
+        </section>
+
+        <hr className="border-slate-200" />
+
         {/* Introduction */}
         <section id="about" className="scroll-mt-24 space-y-6">
           <div className="space-y-3">
@@ -90,7 +415,7 @@ export default function AIPolicyPage() {
               className="text-[24px] font-semibold text-slate-800 sm:text-[28px]"
               style={{ fontFamily: "Cormorant Garamond, serif" }}
             >
-              About This Policy
+              The AI Policy
             </h2>
           </div>
           <p className="text-[14px] leading-[1.8] text-slate-500 sm:text-[15px]">
