@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useCallback } from "react";
 import { navSections, isSectionActive } from "../../lib/navigation";
 import NavIcon from "./NavIcon";
+import SearchBar from "./SearchBar";
 import { ChevronDown, X } from "lucide-react";
 
 export default function MobileNav({
@@ -69,6 +70,11 @@ export default function MobileNav({
           <button type="button" onClick={onClose} aria-label="Close menu">
             <X size={24} className="text-white" />
           </button>
+        </div>
+
+        {/* Search */}
+        <div className="border-b border-slate-200 bg-white px-6 py-3">
+          <SearchBar variant="mobile" onNavigate={onClose} />
         </div>
 
         {/* Accordion sections */}
