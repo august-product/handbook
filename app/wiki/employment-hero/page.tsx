@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const mandatoryModules = [
@@ -71,6 +72,24 @@ export default function EmploymentHeroPage() {
               Open the Employment Hero guide &rarr;
             </a>
           </p>
+          <a
+            href="https://drive.google.com/file/d/1QzZ-5KuKO1WJaXZbufPW4QH277yQMRF-/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open the Employment Hero Desktop Employee Daily Use Guide"
+            className="mx-auto block w-full max-w-[642px] overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:opacity-90"
+          >
+            <Image
+              src="/images/employment_hero-cover-image.png"
+              alt="Employment Hero — Desktop Employee Daily Use Guide cover"
+              width={642}
+              height={360}
+              quality={100}
+              unoptimized
+              sizes="(min-width: 642px) 642px, 100vw"
+              className="h-auto w-full"
+            />
+          </a>
         </section>
 
         <hr className="border-slate-200" />

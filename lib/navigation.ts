@@ -95,7 +95,7 @@ export const navSections: NavSection[] = [
       {
         href: "/wiki/how-we-work",
         label: "How We Work",
-        description: "Quarterly cadences, presentations, and team rituals.",
+        description: "Cadences, team rituals, webinars, and the Valeria platform.",
         icon: "calendar",
       },
       {
@@ -155,7 +155,7 @@ export const navSections: NavSection[] = [
         icon: "bot",
       },
       {
-        href: "/it-support/accounts-sso-passwords",
+        href: "/it-support/accounts-security-passwords",
         label: "Accounts, 2FA, SSO & Passwords",
         description: "Single sign-on setup and password management.",
         icon: "key-round",
