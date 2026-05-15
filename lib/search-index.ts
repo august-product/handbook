@@ -92,21 +92,21 @@ const extraEntries: SearchEntry[] = [
   // Accounts page (a few useful anchors)
   {
     title: "2FA + Multi-Factor Authentication (MFA)",
-    href: "/it-support/accounts-sso-passwords#mfa",
+    href: "/it-support/accounts-security-passwords#mfa",
     section: "IT & Support",
     description: "MFA requirements and setup.",
     keywords: ["mfa", "2fa", "authenticator", "google authenticator"],
   },
   {
     title: "Single Sign-On (SSO)",
-    href: "/it-support/accounts-sso-passwords#sso",
+    href: "/it-support/accounts-security-passwords#sso",
     section: "IT & Support",
     description: "Single sign-on setup and policy.",
     keywords: ["sso", "single sign on"],
   },
   {
     title: "1Password — Password Manager",
-    href: "/it-support/accounts-sso-passwords#1password",
+    href: "/it-support/accounts-security-passwords#1password",
     section: "IT & Support",
     description: "Our standard password manager.",
     keywords: ["1password", "passwords", "password manager"],

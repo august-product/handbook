@@ -272,6 +272,42 @@ export default function AccountsSsoPasswordsPage() {
               <li>Any accounts found to violate these practices, may have access temporarily revoked</li>
             </ul>
           </div>
+
+          {/* 4.4 Google Workspace Password Policy */}
+          <div className="space-y-3">
+            <h3 className="text-[16px] font-semibold text-slate-800">4.4 Google Workspace Password Policy</h3>
+            <p className="text-[14px] leading-[1.8] text-slate-500">Your Google Workspace password must meet the following requirements:</p>
+            <ul className="list-inside list-disc space-y-1.5 text-[14px] leading-[1.7] text-slate-500">
+              <li><strong className="text-slate-700">Length:</strong> Between 12 and 100 characters</li>
+              <li><strong className="text-slate-700">Strength:</strong> Must include uppercase, lowercase, numbers, and symbols</li>
+              <li><strong className="text-slate-700">Expiration:</strong> Your password will expire every 180 days. When it expires, you&apos;ll receive a prompt to create a new strong password</li>
+              <li><strong className="text-slate-700">Reuse:</strong> You cannot reuse old passwords</li>
+            </ul>
+          </div>
+
+          {/* 4.5 When your password expires */}
+          <div className="rounded-2xl bg-[#eae6e1] px-7 py-6">
+            <h3 className="text-[16px] font-semibold text-slate-800">4.5 When your password expires</h3>
+            <p className="mt-2 text-[14px] leading-[1.8] text-slate-500">
+              Google Workspace will notify you 30 days before your password expires. You&apos;ll see a pop-up alert in Gmail, Calendar, and other Google services. Click the alert to change your password, or wait until the expiration date — you&apos;ll be required to set a new one at your next sign-in.
+            </p>
+          </div>
+
+          {/* 4.6 If you forget your password */}
+          <div className="rounded-2xl bg-[#eae6e1] px-7 py-6">
+            <h3 className="text-[16px] font-semibold text-slate-800">4.6 If you forget your password</h3>
+            <p className="mt-2 text-[14px] leading-[1.8] text-slate-500">
+              Use the recovery options at the Google login screen (email or phone), or contact your IT administrator.
+            </p>
+          </div>
+
+          {/* 4.7 Password manager */}
+          <div className="rounded-2xl bg-[#eae6e1] px-7 py-6">
+            <h3 className="text-[16px] font-semibold text-slate-800">4.7 Password manager</h3>
+            <p className="mt-2 text-[14px] leading-[1.8] text-slate-500">
+              Use your <a href="https://1password.com/product/teams-small-business-password-manager" target="_blank" rel="noreferrer" className="text-[#326354] transition hover:text-[#2a5044]">1Password</a> account to generate and store a strong, unique password. Never reuse passwords across services.
+            </p>
+          </div>
           <BackToTop />
         </section>
 
