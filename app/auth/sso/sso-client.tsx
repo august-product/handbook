@@ -7,7 +7,7 @@ import Image from "next/image";
 import { setAuth } from "../../../lib/auth";
 
 const SSO_EXCHANGE_URL =
-  "https://xdti-9vsw-swso.e2.xano.io/api:Nz1enbvB/sso_exchange";
+  "https://xdti-9vsw-swso.e2.xano.io/api:handbook:Kshitiz_Branch/sso_exchange";
 
 type SsoPayload = {
   email: string;
