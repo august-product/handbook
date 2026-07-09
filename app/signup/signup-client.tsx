@@ -62,7 +62,7 @@ export default function SignupClient({ imageSources }: SignupClientProps) {
     }
     return (
       normalizedEmail.endsWith("@augustcollections.com") ||
-      normalizedEmail.endsWith("@riolondon.com")
+      normalizedEmail.endsWith("@studioriolondon.com")
     );
   }, [normalizedEmail]);
   const passwordsMatch =
