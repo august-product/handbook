@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 const XANO_GOOGLE_AUTH_URL =
   "https://xdti-9vsw-swso.e2.xano.io/api:handbook:Kshitiz_Branch/auth/google";
 
-const ALLOWED_DOMAINS = ["augustcollections.com", "studloriolondon.com"];
+const ALLOWED_DOMAINS = ["augustcollections.com", "studioriolondon.com"];
 
 type GoogleUserInfo = {
   email?: string;
